@@ -10,4 +10,8 @@ class Userinfo extends Model
     public function user(){
         return $this->belongsTo(User::class);
     }
+
+    protected $dates = [
+        'created_at',
+    ];
 }

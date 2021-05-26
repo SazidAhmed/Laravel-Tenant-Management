@@ -19,6 +19,10 @@ class User extends Authenticatable
         'role_id', 'username', 'mobile', 'password',
     ];
 
+    protected $dates = [
+        'created_at',
+    ];
+
     /**
      * The attributes that should be hidden for arrays.
      *
