@@ -40,7 +40,7 @@
             </div>
             <div class="card-body">
               <div class="table-responsive">
-                <table id="users" class="table">
+                <table id="datatable" class="table">
                   <thead class=" text-primary">
                     <tr>
                       <th>
@@ -50,6 +50,7 @@
                       Mobile
                     </th>
                     <th>Role</th>
+                    <th>Date Added</th>
                     @if(isset(auth()->user()->role['permissions']['user']['can-view']))
                     <th>
                       Actions
@@ -66,6 +67,7 @@
                          {{$user->mobile}}
                         </td>
                         <td>{{$user->role->name??''  }}</td>
+                        <td>{{date('d-M-y', strtotime($user->created_at))}}</td>
                         <td>
                           <!--View Button -->
                           @if(isset(auth()->user()->role['permissions']['user']['can-view']))
@@ -317,24 +319,25 @@
   </div>
 </div>
 
-
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <!-- My Scripts -->
-<script type="text/javascript">
+  <script type="text/javascript">
 
   $(document).ready(function() {
-    $('#').DataTable({
+    $('#datatable').DataTable({
         "pagingType": "full_numbers",
         "lengthMenu": [
           [10, 25, 50, -1],
           [10, 25, 50, "All"]
         ],
+        // paging: false,
         responsive: true,
+        ordering:  false,
         language: {
           search: "_INPUT_",
           searchPlaceholder: "Search records",
         }
       });
-  });
-</script>
+  } );
+  </script>
 @endsection
