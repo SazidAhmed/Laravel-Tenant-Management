@@ -38,7 +38,7 @@
             </div>
             <div class="card-body">
               <div class="table-responsive">
-                <table id="family" class="table">
+                <table id="datatable" class="table">
                   <thead class=" text-primary">
                     <tr>
                       <th>Index</th>
@@ -60,149 +60,14 @@
                         <a href="#" data-toggle="modal" data-target="#viewmodal{{$notice->id}}">
                         <i class="material-icons text-info">visibility</i>
                         </a>
-                        <!-- View modal -->
-                        <div class="modal fade" id="viewmodal{{$notice->id}}" tabindex="-1" role="dialog" >
-                          <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                              <div class="card">
-                                <div class="card-header card-header-primary">
-                                  <div class="row">
-                                    <div class="col-6 text-left">
-                                      <h4 class="card-title">Notice</h4>
-                                      <p class="card-category">Details Here</p>
-                                    </div>
-                                    <div class="col-6 text-right">
-                                      <!--Button -->
-                                      <button type="button" class="btn btn-rose btn-fab btn-fab-mini btn-round" data-dismiss="modal" aria-hidden="true">
-                                      <i class="material-icons">close</i></button>
-                                    </div>
-                                  </div>
-                                </div>
-                                <div class="modal-body">
-                                  <div class="card-body">
-                                    <div class="row">
-                                      <div class="col-md-5">
-                                        <span>Created By : </span> {{$notice->name}}
-                                      </div><br>
-                                      <div class="col-md-7">
-                                        <span>Posted On : </span> {{$notice->date}}
-                                      </div>
-                                    </div>
-                                    <div class="row">
-                                      <div class="col-md-12">
-                                        <h3>Title :</h3><p>{{$notice->title}}</p>
-                                        <h3>Description : </h3> <p>{{$notice->description}}</p>
-                                      </div>
-                                    </div>
-                                    <div class="row">
-                                      <div class="col-md-12">
-                                      <span>Last Update : </span> {{$notice->updated_at}}
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>  
-                            </div>
-                          </div>
-                        </div>
                         <!--Edit Button -->
                         <a href="#" data-toggle="modal" data-target="#editmodal{{$notice->id}}">
                         <i class="material-icons text-success">edit</i>
                         </a>
-                        <!-- Edit modal -->
-                        <div class="modal fade" id="editmodal{{$notice->id}}" tabindex="-1" role="dialog" >
-                          <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                              <div class="card">
-                                <div class="card-header card-header-primary">
-                                  <div class="row">
-                                    <div class="col-6 text-left">
-                                    <h4 class="card-title ">Notice</h4>
-                                    <p class="card-category">Edit & Update Here</p>
-                                    </div>
-                                    
-                                    <div class="col-6 text-right">
-                                    <form action="{{route('notice.update',[$notice->id])}}" method="post" enctype="multipart/form-data">@csrf
-                                    {{method_field('PATCH')}}
-                                      <!-- Update Button -->
-                                      <button type="button" class="btn btn-rose btn-fab btn-fab-mini btn-round" data-dismiss="modal" aria-hidden="true">
-                                      <i class="material-icons">close</i></button>
-                                      <button type="submit" class="btn btn-success btn-fab btn-fab-mini btn-round"><i class="material-icons">send</i></button>
-                                    </div>
-                                  </div>
-                                </div>
-                                <div class="modal-body">
-                                  <div class="card-body">
-                                    <div class="form-group bmd-form-group">
-                                        <div class="input-group">
-                                          <div class="input-group-prepend">
-                                            <div class="input-group-text"><i class="material-icons text-success">eco</i></div>
-                                          </div>
-                                          <input type="text" name="name" class="form-control" placeholder="Your Name..." required="" value="{{$notice->name}}">
-                                        </div>
-                                    </div>
-                                    <div class="form-group bmd-form-group">
-                                      <div class="input-group">
-                                        <div class="input-group-prepend">
-                                          <div class="input-group-text"><i class="material-icons text-success">eco</i></div>
-                                        </div>
-                                        <input type="text" class="form-control datetimepicker" placeholder="Date..." name="date" class="form-control"  required="" value="{{$notice->date}}" >
-                                      </div>
-                                    </div>
-                                    <div class="form-group bmd-form-group">
-                                        <div class="input-group">
-                                          <div class="input-group-prepend">
-                                            <div class="input-group-text"><i class="material-icons text-success">eco</i></div>
-                                          </div>
-                                          <input type="text" name="title" class="form-control" placeholder="Title..." required=""  value="{{$notice->title}}">
-                                        </div>
-                                    </div>
-                                    <div class="form-group bmd-form-group">
-                                        <div class="input-group">
-                                          <div class="input-group-prepend">
-                                            <div class="input-group-text"><i class="material-icons text-success">eco</i></div>
-                                          </div>
-                                          <textarea class="form-control" name="description" placeholder="Description..." required="" rows="2">{{$notice->description}}</textarea>
-                                        </div>
-                                    </div>
-                                  </div>
-                                </div>
-                                </form>
-                              </div>   
-                            </div>
-                          </div>
-                        </div>
-
                         <!--Delete Button -->
                         <a href="#" data-toggle="modal" data-target="#deletemodal{{$notice->id}}">
                         <i class="material-icons text-rose">delete</i>
                         </a>
-                        <!-- Delete modal -->
-                        <div class="modal fade" id="deletemodal{{$notice->id}}" tabindex="-1" role="dialog" >
-                          <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                              <div class="card">
-                                <div class="card-header card-header-primary">
-                                <div class="row">
-                                    <div class="col-6 text-left">
-                                    <h4 class="card-title">Warning !!!</h4>
-                                    <p class="card-category">Confirm To Delete</p>
-                                    </div>
-                                    <div class="col-6 text-right">
-                                      <form action="{{route('notice.destroy',[$notice->id])}}" method="post">@csrf
-                                          {{method_field('DELETE')}}
-                                        <!-- Delete Button -->
-                                        <button type="button" class="btn btn-rose btn-fab btn-fab-mini btn-round" data-dismiss="modal" aria-hidden="true">
-                                        <i class="material-icons">close</i></button>
-                                        <button type="submit" class="btn btn-sm btn-success"><i class="material-icons">send</i>Confirm</button>
-                                      </form>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>                                 
-                            </div>
-                          </div>
-                        </div>
                       </td>
                     </tr>
                   @endforeach
@@ -215,6 +80,145 @@
     </div>
   </div>
 </div>
+@foreach($notices as $key=>$notice)
+
+ <!-- View modal -->
+ <div class="modal fade" id="viewmodal{{$notice->id}}" tabindex="-1" role="dialog" >
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="card">
+        <div class="card-header card-header-primary">
+          <div class="row">
+            <div class="col-6 text-left">
+              <h4 class="card-title">Notice</h4>
+              <p class="card-category">Details Here</p>
+            </div>
+            <div class="col-6 text-right">
+              <!--Button -->
+              <button type="button" class="btn btn-rose btn-fab btn-fab-mini btn-round" data-dismiss="modal" aria-hidden="true">
+              <i class="material-icons">close</i></button>
+            </div>
+          </div>
+        </div>
+        <div class="modal-body">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-5">
+                <span>Created By : </span> {{$notice->name}}
+              </div><br>
+              <div class="col-md-7">
+                <span>Posted On : </span> {{$notice->date}}
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <h3>Title :</h3><p>{{$notice->title}}</p>
+                <h3>Description : </h3> <p>{{$notice->description}}</p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+              <span>Last Update : </span> {{$notice->updated_at}}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>  
+    </div>
+  </div>
+</div>
+
+<!-- Edit modal -->
+<div class="modal fade" id="editmodal{{$notice->id}}" tabindex="-1" role="dialog" >
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="card">
+        <div class="card-header card-header-primary">
+          <div class="row">
+            <div class="col-6 text-left">
+            <h4 class="card-title ">Notice</h4>
+            <p class="card-category">Edit & Update Here</p>
+            </div>
+            
+            <div class="col-6 text-right">
+            <form action="{{route('notice.update',[$notice->id])}}" method="post" enctype="multipart/form-data">@csrf
+            {{method_field('PATCH')}}
+              <!-- Update Button -->
+              <button type="button" class="btn btn-rose btn-fab btn-fab-mini btn-round" data-dismiss="modal" aria-hidden="true">
+              <i class="material-icons">close</i></button>
+              <button type="submit" class="btn btn-success btn-fab btn-fab-mini btn-round"><i class="material-icons">send</i></button>
+            </div>
+          </div>
+        </div>
+        <div class="modal-body">
+          <div class="card-body">
+            <div class="form-group bmd-form-group">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <div class="input-group-text"><i class="material-icons text-success">eco</i></div>
+                  </div>
+                  <input type="text" name="name" class="form-control" placeholder="Your Name..." required="" value="{{$notice->name}}">
+                </div>
+            </div>
+            <div class="form-group bmd-form-group">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <div class="input-group-text"><i class="material-icons text-success">eco</i></div>
+                </div>
+                <input type="text" class="form-control datetimepicker" placeholder="Date..." name="date" class="form-control"  required="" value="{{$notice->date}}" >
+              </div>
+            </div>
+            <div class="form-group bmd-form-group">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <div class="input-group-text"><i class="material-icons text-success">eco</i></div>
+                  </div>
+                  <input type="text" name="title" class="form-control" placeholder="Title..." required=""  value="{{$notice->title}}">
+                </div>
+            </div>
+            <div class="form-group bmd-form-group">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <div class="input-group-text"><i class="material-icons text-success">eco</i></div>
+                  </div>
+                  <textarea class="form-control" name="description" placeholder="Description..." required="" rows="2">{{$notice->description}}</textarea>
+                </div>
+            </div>
+          </div>
+        </div>
+        </form>
+      </div>   
+    </div>
+  </div>
+</div>
+
+<!-- Delete modal -->
+<div class="modal fade" id="deletemodal{{$notice->id}}" tabindex="-1" role="dialog" >
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="card">
+        <div class="card-header card-header-primary">
+        <div class="row">
+            <div class="col-6 text-left">
+            <h4 class="card-title">Warning !!!</h4>
+            <p class="card-category">Confirm To Delete</p>
+            </div>
+            <div class="col-6 text-right">
+              <form action="{{route('notice.destroy',[$notice->id])}}" method="post">@csrf
+                  {{method_field('DELETE')}}
+                <!-- Delete Button -->
+                <button type="button" class="btn btn-rose btn-fab btn-fab-mini btn-round" data-dismiss="modal" aria-hidden="true">
+                <i class="material-icons">close</i></button>
+                <button type="submit" class="btn btn-sm btn-success"><i class="material-icons">send</i>Confirm</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>                                 
+    </div>
+  </div>
+</div>
+@endforeach
 
 <!-- Add modal -->
 <div class="modal fade" id="addmodal" tabindex="-1" role="dialog" >
@@ -277,23 +281,27 @@
     </div>
   </div>
 </div>
+
+
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <!-- My Scripts -->
-<script type="text/javascript">
+  <script type="text/javascript">
 
   $(document).ready(function() {
-    $('#').DataTable({
+    $('#datatable').DataTable({
         "pagingType": "full_numbers",
         "lengthMenu": [
           [10, 25, 50, -1],
           [10, 25, 50, "All"]
         ],
-        responsive: true,
+        // paging: false,
+        responsive: false,
+        ordering:  false,
         language: {
           search: "_INPUT_",
           searchPlaceholder: "Search records",
         }
       });
-  });
-</script>
+  } );
+  </script>
 @endsection

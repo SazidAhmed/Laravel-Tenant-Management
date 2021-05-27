@@ -351,6 +351,7 @@
     </div>
   </div>
 @endforeach
+
 <!-- Payment Add modal -->
 <div class="modal fade" id="addmodal" tabindex="-1" role="dialog" >
   <div class="modal-dialog" role="document">
@@ -509,7 +510,7 @@
           [10, 25, 50, "All"]
         ],
         // paging: false,
-        responsive: true,
+        responsive: false,
         ordering:  false,
         language: {
           search: "_INPUT_",

@@ -67,7 +67,7 @@
             </a>
           </li>
           <!--Info Management -->
-          @if(isset(auth()->user()->role->permission['name']['user']['can-list']))
+          @if(isset(auth()->user()->role['permissions']['info']['can-list']))
           <li class="nav-item{{ ($activePage == 'info' || $activePage == 'family' || $activePage == 'emergency' || $activePage == 'extra') ? ' active' : '' }} ">
             <a class="nav-link" data-toggle="collapse" href="#userinfo"  aria-expanded="true">
               <i class="material-icons">supervisor_account</i>
@@ -105,19 +105,14 @@
             </div>
           </li>
           @endif
+          @if(isset(auth()->user()->role['permissions']['notice']['can-list']))
           <li class="nav-item{{ $activePage == 'notice' ? ' active' : '' }}">
             <a class="nav-link" href="{{ route('notice.create') }}">
               <i class="material-icons">date_range</i>
               <p> Notice</p>
             </a>
           </li>
-
-          <li class="nav-item{{ $activePage == 'icons' ? ' active' : '' }} ">
-            <a class="nav-link" href="{{ route('icons') }}">
-              <i class="material-icons">build</i>
-              <p> Icons </p>
-            </a>
-          </li>
+          @endif
         </ul>
       </div>
     </div>

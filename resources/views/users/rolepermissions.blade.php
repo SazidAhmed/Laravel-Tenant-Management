@@ -137,11 +137,27 @@
                       <tr>
                         <td>User</td>
                         <td><input type="checkbox" name="permissions[user][can-add]" @if(isset($role['permissions']['user']['can-add']))checked @endif value="1"></td>
-                        <td><input type="checkbox" name="permissions[user][can-edit]" @if(isset($role['permissions']['user']['can-add']))checked @endif value="1"></td>
-                        <td><input type="checkbox" name="permissions[user][can-delete]" @if(isset($role['permissions']['user']['can-add']))checked @endif value="1"></td>
-                        <td><input type="checkbox" name="permissions[user][can-view]" @if(isset($role['permissions']['user']['can-add']))checked @endif value="1"></td>
-                        <td><input type="checkbox" name="permissions[user][can-list]" @if(isset($role['permissions']['user']['can-add']))checked @endif value="1"></td>
-                    </tr>
+                        <td><input type="checkbox" name="permissions[user][can-edit]" @if(isset($role['permissions']['user']['can-edit']))checked @endif value="1"></td>
+                        <td><input type="checkbox" name="permissions[user][can-delete]" @if(isset($role['permissions']['user']['can-delete']))checked @endif value="1"></td>
+                        <td><input type="checkbox" name="permissions[user][can-view]" @if(isset($role['permissions']['user']['can-view']))checked @endif value="1"></td>
+                        <td><input type="checkbox" name="permissions[user][can-list]" @if(isset($role['permissions']['user']['can-list']))checked @endif value="1"></td>
+                      </tr>
+                      <tr>
+                        <td>Info</td>
+                        <td><input type="checkbox" name="permissions[info][can-add]" @if(isset($role['permissions']['info']['can-add']))checked @endif value="1"></td>
+                        <td><input type="checkbox" name="permissions[info][can-edit]" @if(isset($role['permissions']['info']['can-edit']))checked @endif value="1"></td>
+                        <td><input type="checkbox" name="permissions[info][can-delete]" @if(isset($role['permissions']['info']['can-delete']))checked @endif value="1"></td>
+                        <td><input type="checkbox" name="permissions[info][can-view]" @if(isset($role['permissions']['info']['can-view']))checked @endif value="1"></td>
+                        <td><input type="checkbox" name="permissions[info][can-list]" @if(isset($role['permissions']['info']['can-list']))checked @endif value="1"></td>
+                      </tr>
+                      <tr>
+                        <td>Notice</td>
+                        <td><input type="checkbox" name="permissions[notice][can-add]" @if(isset($role['permissions']['notice']['can-add']))checked @endif value="1"></td>
+                        <td><input type="checkbox" name="permissions[notice][can-edit]" @if(isset($role['permissions']['notice']['can-edit']))checked @endif value="1"></td>
+                        <td><input type="checkbox" name="permissions[notice][can-delete]" @if(isset($role['permissions']['notice']['can-delete']))checked @endif value="1"></td>
+                        <td><input type="checkbox" name="permissions[notice][can-view]" @if(isset($role['permissions']['notice']['can-view']))checked @endif value="1"></td>
+                        <td><input type="checkbox" name="permissions[notice][can-list]" @if(isset($role['permissions']['notice']['can-list']))checked @endif value="1"></td>
+                      </tr>
                     </tbody>
                   </table>
                 </div>
@@ -229,20 +245,36 @@
                     </thead>
                     <tbody>
                       <tr>
-                          <td>Role</td>
-                          <td><input type="checkbox" name="permissions[role][can-add]" value="1"></td>
-                          <td><input type="checkbox" name="permissions[role][can-edit]" value="1"></td>
-                          <td><input type="checkbox" name="permissions[role][can-delete]" value="1"></td>
-                          <td><input type="checkbox" name="permissions[role][can-view]" value="1"></td>
-                          <td><input type="checkbox" name="permissions[role][can-list]" value="1"></td>
+                        <td>Role</td>
+                        <td><input type="checkbox" name="permissions[role][can-add]" value="1"></td>
+                        <td><input type="checkbox" name="permissions[role][can-edit]" value="1"></td>
+                        <td><input type="checkbox" name="permissions[role][can-delete]" value="1"></td>
+                        <td><input type="checkbox" name="permissions[role][can-view]" value="1"></td>
+                        <td><input type="checkbox" name="permissions[role][can-list]" value="1"></td>
                       </tr>
                       <tr>
-                          <td>User</td>
-                          <td><input type="checkbox" name="permissions[user][can-add]" value="1"></td>
-                          <td><input type="checkbox" name="permissions[user][can-edit]" value="1"></td>
-                          <td><input type="checkbox" name="permissions[user][can-delete]" value="1"></td>
-                          <td><input type="checkbox" name="permissions[user][can-view]" value="1"></td>
-                          <td><input type="checkbox" name="permissions[user][can-list]" value="1"></td>
+                        <td>User</td>
+                        <td><input type="checkbox" name="permissions[user][can-add]" value="1"></td>
+                        <td><input type="checkbox" name="permissions[user][can-edit]" value="1"></td>
+                        <td><input type="checkbox" name="permissions[user][can-delete]" value="1"></td>
+                        <td><input type="checkbox" name="permissions[user][can-view]" value="1"></td>
+                        <td><input type="checkbox" name="permissions[user][can-list]" value="1"></td>
+                      </tr>
+                      <tr>
+                        <td>Info</td>
+                        <td><input type="checkbox" name="permissions[info][can-add]" value="1"></td>
+                        <td><input type="checkbox" name="permissions[info][can-edit]" value="1"></td>
+                        <td><input type="checkbox" name="permissions[info][can-delete]" value="1"></td>
+                        <td><input type="checkbox" name="permissions[info][can-view]" value="1"></td>
+                        <td><input type="checkbox" name="permissions[info][can-list]" value="1"></td>
+                      </tr>
+                      <tr>
+                        <td>Notice</td>
+                        <td><input type="checkbox" name="permissions[notice][can-add]" value="1"></td>
+                        <td><input type="checkbox" name="permissions[notice][can-edit]" value="1"></td>
+                        <td><input type="checkbox" name="permissions[notice][can-delete]" value="1"></td>
+                        <td><input type="checkbox" name="permissions[notice][can-view]" value="1"></td>
+                        <td><input type="checkbox" name="permissions[notice][can-list]" value="1"></td>
                       </tr>
                     </tbody>
                   </table>
@@ -270,7 +302,7 @@
           [10, 25, 50, "All"]
         ],
         // paging: false,
-        responsive: true,
+        responsive: false,
         ordering:  false,
         language: {
           search: "_INPUT_",

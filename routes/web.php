@@ -42,6 +42,3 @@ Route::group(['middleware' => ['auth', 'has.permission']], function () {
 
 
 //components
-Route::get('icons', function () {
-	return view('icons');
-})->name('icons');

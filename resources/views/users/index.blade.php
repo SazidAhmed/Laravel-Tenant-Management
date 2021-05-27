@@ -43,6 +43,7 @@
                 <table id="datatable" class="table">
                   <thead class=" text-primary">
                     <tr>
+                      <th>Index</th>
                       <th>
                       Username
                     </th>
@@ -58,8 +59,9 @@
                     @endif 
                   </tr></thead>
                   <tbody>
-                  @foreach($users as $user)
+                  @foreach($users as $key=>$user)
                     <tr>
+                        <td> {{$key+1}}</td>
                         <td>
                           {{$user->username}}
                         </td>
@@ -94,165 +96,164 @@
                 </table>
               </div>
             </div>
-            @foreach($users as $user)
-              <!-- View modal -->
-              <div class="modal fade" id="viewmodal{{$user->id}}" tabindex="-1" role="dialog" >
-                <div class="modal-dialog modal-login" role="document">
-                  <div class="modal-content">
-                    <div class="card">
-                      <div class="card-header card-header-primary">
-                        <div class="row">
-                          <div class="col-6 text-left">
-                            <h4 class="card-title">User</h4>
-                            <p class="card-category">Details Here</p>
-                          </div>
-                          <div class="col-6 text-right">
-                            <!--Button -->
-                            <button type="button" class="btn btn-rose btn-fab btn-fab-mini btn-round" data-dismiss="modal" aria-hidden="true">
-                            <i class="material-icons">close</i></button>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="modal-body">
-                        <div class="card-body">
-                          <div class="row">
-                            <div class="col-md-12 ml-auto">
-                                <table class="table table-borderless">
-                                  <tbody>
-                                    <tr>
-                                      <td class="text-info">User ID</td>
-                                      <td>{{$user->id}}</td>
-                                    </tr>
-                                    <tr>
-                                      <td class="text-info">Username</td>
-                                      <td>{{$user->username}}</td>
-                                    </tr>
-                                    <tr>
-                                      <td class="text-info">Mobile</td>
-                                      <td>{{$user->mobile}}</td>
-                                    </tr>
-                                    <tr>
-                                      <td class="text-info">Role</td>
-                                      <td>{{$user->role->name ??''}}</td>
-                                    </tr>
-                                    <tr>
-                                      <td class="text-info">Created Date</td>
-                                      <td>{{$user->created_at}}</td>
-                                    </tr>
-                                    <tr>
-                                      <td class="text-info">Updated_at</td>
-                                      <td>{{$user->updated_at}}</td>
-                                    </tr>
-                                  </tbody>
-                                </table>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>  
-                  </div>
-                </div>
-              </div>
-              <!-- Edit modal -->
-              <div class="modal fade" id="editmodal{{$user->id}}" tabindex="-1" role="dialog" >
-                <div class="modal-dialog modal-login" role="document">
-                  <div class="modal-content">
-                    <div class="card">
-                      <div class="card-header card-header-primary">
-                        <div class="row">
-                          <div class="col-6 text-left">
-                          <h4 class="card-title ">User</h4>
-                          <p class="card-category">Update User</p>
-                          </div>
-                          
-                          <div class="col-6 text-right">
-                          <form action="{{route('user.update',[$user->id])}}" method="post" enctype="multipart/form-data">@csrf
-                          {{method_field('PATCH')}}
-                            <!-- Update Button -->
-                          <button type="button" class="btn btn-rose btn-fab btn-fab-mini btn-round" data-dismiss="modal" aria-hidden="true">
-                          <i class="material-icons">close</i></button>
-                          <button type="submit" class="btn btn-success btn-fab btn-fab-mini btn-round"><i class="material-icons">send</i></button>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="modal-body">
-                        <div class="card-body">
-                          <div class="form-group bmd-form-group">
-                              <div class="input-group">
-                                <div class="input-group-prepend">
-                                  <div class="input-group-text"><i class="material-icons text-success">eco</i></div>
-                                </div>
-                                <input type="text" name="username" value="{{$user->username}}"  class="form-control" placeholder="Username..." >
-                              </div>
-                          </div>
-                          <div class="form-group bmd-form-group">
-                              <div class="input-group">
-                                <div class="input-group-prepend">
-                                  <div class="input-group-text"><i class="material-icons text-success">eco</i></div>
-                                </div>
-                                <input type="text" name="mobile" value="{{$user->mobile}}"  class="form-control" placeholder="mobile..." >
-                              </div>
-                          </div>
-                          <div class="form-group bmd-form-group">
-                              <div class="input-group">
-                                <div class="input-group-prepend">
-                                  <div class="input-group-text"><i class="material-icons text-success">eco</i></div>
-                                </div>
-                                <input type="password" name="password"  placeholder="Password..." class="form-control" >
-                              </div>
-                          </div>
-                          <div class="form-group">
-                            <div class="input-group">
-                              <div class="input-group-prepend">
-                                <div class="input-group-text"><i class="material-icons text-success">eco</i></div>
-                              </div>
-                              <select class="form-control" name="role_id" data-style="btn btn-link">
-                                @foreach(App\Role::all() as $role)
-                                <option value="{{$role->id}}"@if($user->role_id==$role->id)selected @endif>{{$role->name}}</option>
-                                @endforeach
-                              </select>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      </form>
-                    </div>   
-                  </div>
-                </div>
-              </div>
-               <!-- Delete modal -->
-               <div class="modal fade" id="deletemodal{{$user->id}}" tabindex="-1" role="dialog" >
-                <div class="modal-dialog" role="document">
-                  <div class="modal-content">
-                    <div class="card">
-                      <div class="card-header card-header-primary">
-                      <div class="row">
-                          <div class="col-6 text-left">
-                          <h4 class="card-title">Warning !!!</h4>
-                          <p class="card-category">Confirm To Delete</p>
-                          </div>
-                          <div class="col-6 text-right">
-                            <form action="{{route('user.destroy',[$user->id])}}" method="post">@csrf
-                                {{method_field('DELETE')}}
-                               <!-- Delete Button -->
-                            <button type="button" class="btn btn-rose btn-fab btn-fab-mini btn-round" data-dismiss="modal" aria-hidden="true">
-                            <i class="material-icons">close</i></button>
-                            <button type="submit" class="btn btn-sm btn-success"><i class="material-icons">send</i>Confirm</button>
-                            </form>
-                          </div>
-                        </div>
-                      </div>
-                    </div>                                 
-                  </div>
-                </div>
-              </div>
-            @endforeach
           </div>
       </div>
     </div>
   </div>
 </div>
-
+@foreach($users as $user)
+  <!-- View modal -->
+  <div class="modal fade" id="viewmodal{{$user->id}}" tabindex="-1" role="dialog" >
+    <div class="modal-dialog modal-login" role="document">
+      <div class="modal-content">
+        <div class="card">
+          <div class="card-header card-header-primary">
+            <div class="row">
+              <div class="col-6 text-left">
+                <h4 class="card-title">User</h4>
+                <p class="card-category">Details Here</p>
+              </div>
+              <div class="col-6 text-right">
+                <!--Button -->
+                <button type="button" class="btn btn-rose btn-fab btn-fab-mini btn-round" data-dismiss="modal" aria-hidden="true">
+                <i class="material-icons">close</i></button>
+              </div>
+            </div>
+          </div>
+          <div class="modal-body">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-12 ml-auto">
+                    <table class="table table-borderless">
+                      <tbody>
+                        <tr>
+                          <td class="text-info">User ID</td>
+                          <td>{{$user->id}}</td>
+                        </tr>
+                        <tr>
+                          <td class="text-info">Username</td>
+                          <td>{{$user->username}}</td>
+                        </tr>
+                        <tr>
+                          <td class="text-info">Mobile</td>
+                          <td>{{$user->mobile}}</td>
+                        </tr>
+                        <tr>
+                          <td class="text-info">Role</td>
+                          <td>{{$user->role->name ??''}}</td>
+                        </tr>
+                        <tr>
+                          <td class="text-info">Created Date</td>
+                          <td>{{$user->created_at}}</td>
+                        </tr>
+                        <tr>
+                          <td class="text-info">Updated_at</td>
+                          <td>{{$user->updated_at}}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>  
+      </div>
+    </div>
+  </div>
+  <!-- Edit modal -->
+  <div class="modal fade" id="editmodal{{$user->id}}" tabindex="-1" role="dialog" >
+    <div class="modal-dialog modal-login" role="document">
+      <div class="modal-content">
+        <div class="card">
+          <div class="card-header card-header-primary">
+            <div class="row">
+              <div class="col-6 text-left">
+              <h4 class="card-title ">User</h4>
+              <p class="card-category">Update User</p>
+              </div>
+              
+              <div class="col-6 text-right">
+              <form action="{{route('user.update',[$user->id])}}" method="post" enctype="multipart/form-data">@csrf
+              {{method_field('PATCH')}}
+                <!-- Update Button -->
+              <button type="button" class="btn btn-rose btn-fab btn-fab-mini btn-round" data-dismiss="modal" aria-hidden="true">
+              <i class="material-icons">close</i></button>
+              <button type="submit" class="btn btn-success btn-fab btn-fab-mini btn-round"><i class="material-icons">send</i></button>
+              </div>
+            </div>
+          </div>
+          <div class="modal-body">
+            <div class="card-body">
+              <div class="form-group bmd-form-group">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text"><i class="material-icons text-success">eco</i></div>
+                    </div>
+                    <input type="text" name="username" value="{{$user->username}}"  class="form-control" placeholder="Username..." >
+                  </div>
+              </div>
+              <div class="form-group bmd-form-group">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text"><i class="material-icons text-success">eco</i></div>
+                    </div>
+                    <input type="text" name="mobile" value="{{$user->mobile}}"  class="form-control" placeholder="mobile..." >
+                  </div>
+              </div>
+              <div class="form-group bmd-form-group">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text"><i class="material-icons text-success">eco</i></div>
+                    </div>
+                    <input type="password" name="password"  placeholder="Password..." class="form-control" >
+                  </div>
+              </div>
+              <div class="form-group">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <div class="input-group-text"><i class="material-icons text-success">eco</i></div>
+                  </div>
+                  <select class="form-control" name="role_id" data-style="btn btn-link">
+                    @foreach(App\Role::all() as $role)
+                    <option value="{{$role->id}}"@if($user->role_id==$role->id)selected @endif>{{$role->name}}</option>
+                    @endforeach
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+          </form>
+        </div>   
+      </div>
+    </div>
+  </div>
+    <!-- Delete modal -->
+    <div class="modal fade" id="deletemodal{{$user->id}}" tabindex="-1" role="dialog" >
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="card">
+          <div class="card-header card-header-primary">
+          <div class="row">
+              <div class="col-6 text-left">
+              <h4 class="card-title">Warning !!!</h4>
+              <p class="card-category">Confirm To Delete</p>
+              </div>
+              <div class="col-6 text-right">
+                <form action="{{route('user.destroy',[$user->id])}}" method="post">@csrf
+                    {{method_field('DELETE')}}
+                    <!-- Delete Button -->
+                <button type="button" class="btn btn-rose btn-fab btn-fab-mini btn-round" data-dismiss="modal" aria-hidden="true">
+                <i class="material-icons">close</i></button>
+                <button type="submit" class="btn btn-sm btn-success"><i class="material-icons">send</i>Confirm</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>                                 
+      </div>
+    </div>
+  </div>
+@endforeach
 <!-- Add modal -->
 <div class="modal fade" id="addmodal" tabindex="-1" role="dialog" >
   <div class="modal-dialog modal-login" role="document">
@@ -331,7 +332,7 @@
           [10, 25, 50, "All"]
         ],
         // paging: false,
-        responsive: true,
+        responsive: false,
         ordering:  false,
         language: {
           search: "_INPUT_",

@@ -84,14 +84,14 @@
         <div class="row">
           <div class="col-lg-12 col-md-12">
             <div class="card">
-              <div class="card-header card-header-warning">
+              <div class="card-header card-header-danger">
                 <h4 class="card-title">Payments</h4>
               </div>
               <div class="card-body">
                 <div class="row">
                   <div class="col-md-12">
                     <div class="table-responsive">
-                      <table id="payments" class="table table-sm table-hover">
+                      <table id="datatable" class="table table-sm table-hover">
                         <thead class=" text-primary">
                           <tr>             
                             <th>Username</th>
@@ -134,7 +134,7 @@
               </div>
               <div class="card-body">
                 <div class="row">
-                  <div class="col-md-7 ml-auto">
+                  <div class="col-md-12 col-sm-12 ml-auto">
                     <table class="table table-borderless">
                       <tbody>
                         <tr>
@@ -184,7 +184,7 @@
                       </tbody>
                     </table><br>
                   </div><br>
-                  <div class="col-md-5 mr-auto">
+                  <div class="col-md-12 col-sm-12 mr-auto">
                     <ul>
                     <!-- <img src="storage/profile/{{Auth::user()->userinfo->image ??''}}" width="250" > -->
                     <img src="{{ URL::asset('profile/'.Auth::user()->userinfo->image ??'') }}"  width="250" >
@@ -213,62 +213,29 @@
               </div>
             </div>
           </div>
-         
         </div>
-        <!-- Panel -->
-        <!-- <div class="row">
-          <div class="col-lg-6 col-md-12">
-            <div class="card">
-              <div class="card-header card-header-tabs card-header-primary">
-                <div class="nav-tabs-navigation">
-                  <div class="nav-tabs-wrapper">
-                    <span class="nav-tabs-title"></span>
-                    <ul class="nav nav-tabs" data-tabs="tabs">
-                      <li class="nav-item">
-                        <a class="nav-link active" href="#settings" data-toggle="tab">
-                          <i class="material-icons">cloud</i> Notice
-                          <div class="ripple-container"></div>
-                        </a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link" href="#messages" data-toggle="tab">
-                          <i class="material-icons">code</i>Messages
-                          <div class="ripple-container"></div>
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-              <div class="card-body">
-                <div class="tab-content">
-                <div class="tab-pane active" id="settings">
-                    <table class="table">
-                      <tbody>
-                        
-                      </tbody>
-                    </table>
-                  </div>
-                  <div class="tab-pane" id="messages">
-                    <table class="table">
-                      <tbody>
-                        @foreach(App\Role::all() as $role)
-                        <tr>
-                          <td>{{$role->name}}</td>
-                          <td class="td-actions text-right">
-                          {{$role->description}}
-                          </td>
-                        </tr>
-                        @endforeach
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div> -->
       </div>
     </div>
   </div>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<!-- My Scripts -->
+  <script type="text/javascript">
+
+  $(document).ready(function() {
+    $('#datatable').DataTable({
+        "pagingType": "full_numbers",
+        "lengthMenu": [
+          [10, 25, 50, -1],
+          [10, 25, 50, "All"]
+        ],
+        // paging: false,
+        responsive: false,
+        ordering:  false,
+        language: {
+          search: "_INPUT_",
+          searchPlaceholder: "Search records",
+        }
+      });
+  } );
+  </script>
 @endsection
